@@ -20,7 +20,11 @@
         </activity>
         <activity android:name=".CategoryActivity" />
         <activity android:name=".EditActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".AnalyticsActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

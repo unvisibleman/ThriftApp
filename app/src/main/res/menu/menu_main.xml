@@ -5,22 +5,27 @@
     <item
         android:title="@string/addWaste"
         android:orderInCategory="101"
-        android:id="@+id/action_addWaste" />
+        android:id="@+id/action_addWaste"
+        android:onClick="menuAddWasteClick" />
     <item
         android:title="@string/addProfit"
         android:orderInCategory="102"
-        android:id="@+id/action_addProfit" />
+        android:id="@+id/action_addProfit"
+        android:onClick="menuAddProfitClick" />
     <item
         android:title="@string/anal"
         android:orderInCategory="103"
-        android:id="@+id/action_analytics" />
+        android:id="@+id/action_analytics"
+        android:onClick="menuAnalyticsClick" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="104"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:onClick="menuSettingsClick" />
     <item
         android:title="@string/help"
         android:orderInCategory="105"
-        android:id="@+id/action_help" />
+        android:id="@+id/action_help"
+        android:onClick="menuHelpClick" />
 </menu>

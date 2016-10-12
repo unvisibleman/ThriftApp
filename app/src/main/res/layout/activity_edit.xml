@@ -20,25 +20,18 @@
             android:id="@+id/catRow">
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_marginStart="18dp"
                 android:id="@+id/textCategory"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_marginTop="22dp"
-                tools:text="@string/category" />
+                android:text="@string/category" />
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinnerCategory"
-                android:layout_alignTop="@+id/textCategory"
-                android:layout_toRightOf="@+id/textCategory"
-                android:layout_toEndOf="@+id/textCategory"
                 android:layout_marginLeft="12dp"
                 android:layout_marginStart="12dp" />
 
@@ -50,11 +43,10 @@
             android:id="@+id/costRow">
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textCost"
-                tools:text="@string/cost" />
+                android:text="@string/cost" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -70,11 +62,10 @@
             android:id="@+id/commentRow">
 
             <TextView
-                android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textComment"
-                tools:text="@string/comment" />
+                android:text="@string/comment" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -89,6 +80,17 @@
             android:layout_height="match_parent"
             android:id="@+id/dateRow">
 
+            <TextView
+                android:text="@string/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDate" />
+
+            <Button
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonGetDate" />
         </TableRow>
 
         <TableRow
@@ -97,19 +99,18 @@
             android:id="@+id/yesnoRow" >
 
             <Button
-                android:text="Button"
+                android:text="@string/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonCancel"
-                tools:text="@string/cancel"
-                android:background="@color/colorAccent" />
+                 />
 
             <Button
-                android:text="Button"
+                android:text="@string/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonSave"
-                tools:text="@string/save" />
+                 />
         </TableRow>
     </TableLayout>
 
