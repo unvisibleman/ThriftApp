@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.igor.bugetapp.MainActivity">
+    <item
+        android:title="@string/addWaste"
+        android:orderInCategory="101"
+        android:id="@+id/action_addWaste" />
+    <item
+        android:title="@string/addProfit"
+        android:orderInCategory="102"
+        android:id="@+id/action_addProfit" />
+    <item
+        android:title="@string/anal"
+        android:orderInCategory="103"
+        android:id="@+id/action_analytics" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="104"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:title="@string/help"
+        android:orderInCategory="105"
+        android:id="@+id/action_help" />
+</menu>
