@@ -10,11 +10,16 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    ArrayList<element> categories = new ArrayList<element>();
+    ListAdapter listAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle(R.string.app_name);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -23,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         // add elements into main listView
+        // создаем адаптер
+        fillData();
+        listAdapter = new ListAdapter(this, categories);
+
+        // настраиваем список
+        ListView lvMain = (ListView) findViewById(R.id.catList);
+        lvMain.setAdapter(listAdapter);
     }
 
     @Override
@@ -45,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // генерируем данные для адаптера
+    void fillData() {
+        for (String elem : getResources().getStringArray(R.array.categories)) {
+            categories.add(new element(elem, 0));
+        }
     }
 
     //click on elements in list

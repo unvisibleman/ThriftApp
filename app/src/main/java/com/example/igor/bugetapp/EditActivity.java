@@ -10,6 +10,7 @@ public class EditActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle(R.string.addElement);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
