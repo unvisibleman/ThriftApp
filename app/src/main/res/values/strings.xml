@@ -3,7 +3,7 @@
     <string name="action_settings">Настройки</string>
 
     <string name="acc">Аккаунт</string>
-    <string name="addWaste">Добавить трату</string>
+    <string name="addWaste">Добавить расход</string>
     <string name="addProfit">Добавить доход</string>
     <string name="anal">Аналитика</string>
     <string-array name="analytics">

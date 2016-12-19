@@ -50,8 +50,7 @@ public class ListAdapter extends BaseAdapter {
 
         element p = getProduct(position);
 
-        // заполняем View в пункте списка данными из товаров: наименование, цена
-        // и картинка
+        // заполняем View в пункте списка данными
         ((TextView) view.findViewById(R.id.tvDescr)).setText(p.name);
         ((TextView) view.findViewById(R.id.tvCost)).setText(p.cost + "");
 
