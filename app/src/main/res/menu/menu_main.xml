@@ -4,28 +4,31 @@
     tools:context="com.example.igor.bugetapp.MainActivity">
     <item
         android:title="@string/addWaste"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         android:id="@+id/action_addWaste"
+        android:visible="false"
         android:onClick="menuAddWasteClick" />
     <item
         android:title="@string/addProfit"
-        android:orderInCategory="102"
+        android:orderInCategory="103"
         android:id="@+id/action_addProfit"
+        android:visible="false"
         android:onClick="menuAddProfitClick" />
     <item
-        android:title="@string/anal"
-        android:orderInCategory="103"
+        android:title="@string/analytics"
+        android:orderInCategory="104"
         android:id="@+id/action_analytics"
+        android:visible="false"
         android:onClick="menuAnalyticsClick" />
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="104"
+        android:orderInCategory="105"
         android:title="@string/action_settings"
         app:showAsAction="never"
         android:onClick="menuSettingsClick" />
     <item
         android:title="@string/help"
-        android:orderInCategory="105"
+        android:orderInCategory="106"
         android:id="@+id/action_help"
         android:onClick="menuHelpClick" />
 </menu>

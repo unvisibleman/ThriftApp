@@ -5,7 +5,7 @@
     <string name="acc">Аккаунт</string>
     <string name="addWaste">Добавить расход</string>
     <string name="addProfit">Добавить доход</string>
-    <string name="anal">Аналитика</string>
+    <string name="analytics">Аналитика</string>
     <string-array name="analytics">
         <item>В день на человека</item>
         <item>В месяц на человека</item>

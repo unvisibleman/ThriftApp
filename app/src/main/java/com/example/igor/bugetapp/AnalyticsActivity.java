@@ -12,7 +12,7 @@ public class AnalyticsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle(R.string.anal);
+        setTitle(R.string.analytics);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analytics);
 

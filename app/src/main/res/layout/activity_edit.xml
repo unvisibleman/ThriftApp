@@ -12,7 +12,8 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
         <TableRow
             android:layout_width="match_parent"
@@ -22,18 +23,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:layout_marginStart="18dp"
                 android:id="@+id/textCategory"
-                android:layout_marginTop="22dp"
-                android:text="@string/category" />
+                android:text="@string/category"
+                android:breakStrategy="simple" />
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerCategory"
-                android:layout_marginLeft="12dp"
-                android:layout_marginStart="12dp" />
+                android:id="@+id/spCats" />
 
         </TableRow>
 
@@ -53,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editCost" />
+                android:id="@+id/edPrice" />
         </TableRow>
 
         <TableRow
@@ -72,26 +69,18 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editComment" />
+                android:id="@+id/edTitle" />
+
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/dateRow">
-
-            <TextView
-                android:text="@string/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textDate" />
-
-            <Button
-                android:text=""
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonGetDate" />
-        </TableRow>
+        <CalendarView
+            android:layout_width="286dp"
+            android:layout_height="202dp"
+            android:id="@+id/calendarView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.79" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -103,14 +92,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonCancel"
-                 />
+                android:onClick="btnCancel" />
 
             <Button
                 android:text="@string/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonSave"
-                 />
+                android:onClick="btnSave" />
         </TableRow>
     </TableLayout>
 

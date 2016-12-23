@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by igor on 14.10.16.
@@ -36,9 +37,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     // id по позиции
-    public long getItemId(int position) {
-        return position;
-    }
+    public long getItemId(int position) { return position; }
 
     // пункт списка
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -57,9 +56,10 @@ public class ListAdapter extends BaseAdapter {
         return view;
     }
 
-    // товар по позиции
+    // пункт по позиции
     element getProduct(int position) {
         return ((element) getItem(position));
     }
+
 
 }

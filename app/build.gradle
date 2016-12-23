@@ -4,6 +4,8 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
 
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.example.igor.bugetapp"
         minSdkVersion 15
@@ -18,13 +20,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        pickFirst  'META-INF/LICENSE'
+        pickFirst  'META-INF/DEPENDENCIES'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:support-vector-drawable:24.2.1'
-    testCompile 'junit:junit:4.12'
+
+    compile('org.apache.httpcomponents:httpmime:4.3.6') {
+        exclude module: "httpclient"
+    }
+    compile('org.apache.httpcomponents:httpclient-android:4.3.5')
 }
