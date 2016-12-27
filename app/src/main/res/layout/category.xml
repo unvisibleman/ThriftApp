@@ -20,29 +20,13 @@
             android:text="Описание"
             android:textSize="20sp">
         </TextView>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:text="Дата"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvDate"
-                android:layout_gravity="left"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tvCost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="Цена"
-                android:layout_weight="0.29">
-            </TextView>
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/tvCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="Цена">
+        </TextView>
     </LinearLayout>
 </LinearLayout>

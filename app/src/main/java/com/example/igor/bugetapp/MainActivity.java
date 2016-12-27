@@ -1,10 +1,10 @@
 package com.example.igor.bugetapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,10 +19,7 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> pureCategories = new ArrayList<String>();
     ListAdapter listAdapter;
     String token;
-    GestureDetectorCompat gDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         final ListView list = (ListView)findViewById(R.id.catList);
         list.setClickable(true);
@@ -47,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 startActivityFromChild(MainActivity.this, new Intent(
                         MainActivity.this, CategoryActivity.class
-                ).putExtra("cat", position).putExtra("token", token), 0);
+                ).putExtra("cat", position).putExtra("catName", pureCategories.get(position)).putExtra("token", token), 0);
             }
         });
 
+        token = "";
         letUseInternet();
         refresh();
     }
@@ -77,38 +74,55 @@ public class MainActivity extends AppCompatActivity {
     public void refresh(){
         // проверяем аккаунт
         SharedPreferences settings = getSharedPreferences("UserInfo", 0);
-        //SharedPreferences.Editor editor = settings.edit();
         // если ни одного нет, то вывести уведомление
         if(settings.getString("Username", "").isEmpty()){
             Toast.makeText(this, "Аккаунт не создан! Зайдите в настройки", Toast.LENGTH_SHORT).show();
         }else{
-            apiClient myclient = new apiClient();
-            JSONObject res = myclient.auth(settings.getString("Server", ""), settings.getString("Username", ""), settings.getString("Password", ""));
-            try {
-                if (res.getInt("code") == 400) {
-                    // ошибка
-                    throw new Exception(res.getString("data"));
-                } else {
-                    // токен получен
-                    Toast.makeText(this, "Подключаюсь к серверу...", Toast.LENGTH_SHORT).show();
-                    token = res.getString("data");
-                    JSONArray cats = myclient.categoryList(settings.getString("Server", ""), token).getJSONArray("data");
-                    // создаем адаптер списка
-                    categories.clear();
-                    pureCategories.clear();
-                    for(int i=0; i<cats.length(); i++) {
-                        categories.add(new element(cats.getJSONObject(i).getString("name"), cats.getJSONObject(i).getInt("sum")));
-                        pureCategories.add(cats.getJSONObject(i).getString("name"));
+            new AsyncTask<Void, Void, JSONArray>() {
+                private String err;
+                @Override protected JSONArray doInBackground(Void... params) {
+                    SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+                    apiClient myclient = new apiClient();
+                    JSONObject res = myclient.auth(
+                            settings.getString("Server", ""),
+                            settings.getString("Username", ""),
+                            settings.getString("Password", "")
+                    );
+                    try{
+                        if (res.getInt("code") == 400) {
+                            throw new Exception(res.getString("data"));
+                        } else {
+                            // токен получен
+                            token = res.getString("data");
+                            return myclient.categoryList(settings.getString("Server", ""), token).getJSONArray("data");
+                        }
+                    }catch(Exception e){
+                        err = e.getMessage();
+                        return null;
                     }
-                    listAdapter = new ListAdapter(this, categories);
-                    // настраиваем список
-                    ListView lvMain = (ListView) findViewById(R.id.catList);
-                    lvMain.setAdapter(listAdapter);
                 }
-            }catch(Exception e){
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        };
+
+                @Override protected void onPostExecute(JSONArray cats){
+                    if(cats!=null) {
+                        // выводим данные из джейсона в лист вью
+                        categories.clear();
+                        pureCategories.clear();
+                        try {
+                            for (int i = 0; i < cats.length(); i++) {
+                                categories.add(new element(cats.getJSONObject(i).getString("name"), cats.getJSONObject(i).getInt("sum")));
+                                pureCategories.add(cats.getJSONObject(i).getString("name"));
+                            }
+                        }catch(Exception e){Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();}
+
+                        listAdapter = new ListAdapter(MainActivity.this, categories);
+                        ListView lvMain = (ListView) findViewById(R.id.catList);
+                        lvMain.setAdapter(listAdapter);
+                    }else{
+                        Toast.makeText(MainActivity.this, err, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }.execute();
+        }
     }
 
     //click on elements in list

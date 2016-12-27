@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.icu.util.Calendar;
-import android.icu.text.SimpleDateFormat;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
@@ -17,6 +14,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
+import java.util.*;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -56,11 +55,13 @@ public class EditActivity extends AppCompatActivity {
 
         String server = getSharedPreferences("UserInfo", 0).getString("Server", "");
         String title = edTitle.getText().toString();
-        String selectedDate = new SimpleDateFormat("yyyy.MM.dd").format(calendar.getDate());
-        //Toast.makeText(this, selectedDate, Toast.LENGTH_SHORT).show();
+        Calendar c = Calendar.getInstance();
+        String selectedDate = Integer.toString(c.get(c.YEAR)) + "." + Integer.toString(c.get(c.MONTH)+1) + "." + Integer.toString(c.get(c.DAY_OF_MONTH));
+        //String selectedDate = new SimpleDateFormat("yyyy.MM.dd").format(calendar.getDate());
+        Toast.makeText(this, selectedDate, Toast.LENGTH_SHORT).show();
         try {
             apiClient myclient = new apiClient();
-            // TODO: unfix group
+            // TODO: unfix 0 group
             JSONObject res = myclient.addItem(server, token, price, selectedDate, title, 0, catID);
             if(res.getInt("code") != 200)
                 Toast.makeText(this, "Ошибка: "+res.getString("data"), Toast.LENGTH_SHORT).show();

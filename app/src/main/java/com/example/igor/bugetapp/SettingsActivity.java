@@ -14,6 +14,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.action_settings);
         setContentView(R.layout.activity_settings);
         edLogin = (EditText) findViewById(R.id.edLogin);
         edPassword = (EditText) findViewById(R.id.edPassword);
